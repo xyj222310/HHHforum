@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.myproject1.InformActivity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world"
+        android:layout_toStartOf="@+id/info_forum_title" />
+     <TextView
+             android:id="@+id/info_forum_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="title hdddffffgggggffddddddddd55re"
+             android:textColor="@color/blue"
+             android:textSize="18dp" />
+      <TextView
+			    android:id="@+id/info_forum_sender"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+	       	    android:layout_marginLeft="10dp"
+             	android:layout_below="@id/info_forum_title"		    
+			    android:text="发布人"
+			    android:textColor="@color/gray"/>
+      
+		 <TextView
+		    android:id="@+id/info_forum_sendTime"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		 	android:layout_marginLeft="10dp"
+			android:layout_toRightOf="@id/info_forum_sender"
+		    android:layout_below="@id/info_forum_title"	
+		    android:text="发布时间"
+		    android:textColor="@color/gray" />
+		
+
+		<TextView
+		   android:id="@+id/textContext"
+		   android:layout_width="fill_parent"
+		   android:layout_marginLeft="20dp"
+		   android:layout_marginRight="20dp"
+		   android:layout_marginTop="30dp"
+		   android:layout_height="wrap_content"
+		   android:hint="text content..................................here"
+		   android:layout_below="@id/info_forum_sender"
+		    />
+
+		<Button
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_toEndOf="@id/textContext"
+		    android:text="查询" >
+		</Button>
+
+		<ListView
+		    android:id="@+id/listView1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/textContext"
+		    android:layout_marginTop="20dp" >
+		</ListView>
+
+</RelativeLayout>

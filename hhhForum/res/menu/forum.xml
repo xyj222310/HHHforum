@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.myproject1.ForumActivity" >
+    <item
+        android:id="@+id/forum_menu_0"
+        android:orderInCategory="100"
+        android:showAsAction="withText|ifRoom"
+        android:icon="@drawable/icon1"
+        android:title="关注设置">
+	    <menu>
+	        <item
+	            android:id = "@+id/sub_1"
+	            android:title = "所有" />
+	        <item
+	            android:id = "@+id/sub_2"
+	            android:title = "被选中的" />
+	         <item
+	            android:id = "@+id/sub_3"
+	            android:title = "取消选中" />
+	    </menu>
+    </item>
+    <item
+        android:id="@+id/forum_menu_1"
+        android:orderInCategory="100"
+        android:showAsAction="withText|ifRoom"
+        android:icon="@drawable/icon2"
+        android:title="查看关注"/>
+</menu>

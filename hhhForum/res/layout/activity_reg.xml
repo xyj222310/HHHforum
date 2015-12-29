@@ -1,0 +1,135 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:useDefaultMargins="true" >
+	 <GridLayout 
+	    android:layout_width="wrap_content"
+   		android:layout_height="match_parent"
+   		android:layout_gravity="center"
+    	android:columnCount="4"
+	     >
+		  <TextView
+	        android:layout_column="0"
+	        android:layout_columnSpan="1"/>
+	    <TextView
+	        android:layout_column="0"
+	        android:layout_columnSpan="1"
+	        android:layout_gravity="center"
+	        android:text="用户名" />
+	    <EditText
+	        android:id="@+id/usernamereg"
+	        android:layout_columnSpan="3"
+	        android:ems="10"
+	        android:hint="@string/initial_Edit" 
+	        android:background="@drawable/textbg"
+	        />
+	
+	    <TextView
+	        android:layout_column="0"
+	        android:layout_columnSpan="1"
+	        android:layout_gravity="center"
+	        android:text="密码" 
+	        />
+	
+	    <EditText
+	        android:id="@+id/passwordreg"
+	        android:layout_columnSpan="3"
+	        android:ems="10"
+	        android:hint="@string/initial_Edit"
+	        android:inputType="textPassword" 
+	        android:background="@drawable/textbg"
+	        />
+	
+	    <TextView
+	        android:layout_column="0"
+	        android:layout_columnSpan="1"
+	        android:layout_gravity="center"
+	        android:text="性别" />
+	
+	    <RadioGroup
+	        android:id="@+id/group" 
+	        android:orientation="horizontal" 
+	        android:layout_columnSpan="2">
+	        <RadioButton android:id="@+id/male"
+	            android:text="男" />
+	        <RadioButton android:id="@+id/female" android:text="女" />
+	    </RadioGroup>
+	    <TextView
+	        android:layout_column="0"
+	        android:layout_columnSpan="1"
+	        android:layout_gravity="center"
+	        android:text="爱好" 
+	        android:layout_row="4"/>
+	
+	    <CheckBox 
+	        android:layout_row="4"
+	        android:id="@+id/regcheck1"
+	        android:text="阅读" />
+	
+	    <CheckBox
+	        android:id="@+id/regcheck2"
+	        android:text="听歌" 
+	        android:layout_row="4"/>
+	    <CheckBox
+	        android:id="@+id/regcheck3"
+	        android:text="咯电影" 
+	        android:layout_row="4"/>
+		 <CheckBox 
+		     
+	        android:id="@+id/regcheck4"
+	        android:text="到游戏" 
+		     android:layout_column="1"
+		     android:layout_row="5"/>
+		<CheckBox 
+	        android:id="@+id/regcheck5"
+	        android:text="打球" 
+	        android:layout_row="5"/>
+		<CheckBox 
+	        android:id="@+id/regcheck6"
+	        android:text="自残" 
+	        android:layout_row="5"/>
+		
+		<TextView
+		    android:layout_columnSpan="1"
+		    android:layout_column="0"
+		    android:text="毕业院校"
+		    android:layout_row="7"
+		    android:layout_gravity="center"
+		    />
+		
+		<Spinner
+		    android:id="@+id/spinner2"
+		    android:layout_columnSpan="3"
+		    android:layout_width="250dp"
+		    android:layout_height="100dp"></Spinner>
+
+		<TextView
+		    android:id="@+id/feedback1"
+		    android:text="您注册的用户名"
+		    android:layout_marginTop="30dp"
+		    android:layout_column="1"
+		    android:layout_columnSpan="2"
+		    android:ems="8"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"></TextView>
+		<TextView
+		    android:id="@+id/feedback2"
+		    android:text="您注册的密码"
+		    android:layout_column="1"
+		    android:ems="8"
+		    android:layout_columnSpan="2"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"></TextView>
+				
+		<Button
+		    android:id="@+id/confirmreg"
+		    style="styles/bnStyle"
+		    android:layout_height="41dp"
+		    android:layout_column="3"
+		    android:layout_gravity="right|top"
+		    android:layout_row="0"
+		    android:background="@drawable/check"	/>
+	</GridLayout>
+</GridLayout>
