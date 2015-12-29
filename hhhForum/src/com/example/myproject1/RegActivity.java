@@ -42,6 +42,7 @@ public class RegActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().setDisplayHomeAsUpEnabled(true); //启动导航功能。
 		setContentView(R.layout.activity_reg);
 		 check1 = (CheckBox)findViewById(R.id.regcheck1);
 		 check2 = (CheckBox)findViewById(R.id.regcheck2);

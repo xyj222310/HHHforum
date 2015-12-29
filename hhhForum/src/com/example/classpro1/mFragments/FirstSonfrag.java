@@ -100,7 +100,14 @@ public class FirstSonfrag extends Fragment {
 	private void collectitem(int id) {
 		// TODO Auto-generated method stub
 		dbo = new ForuminfoOprationImpl(getActivity());
-		dbo.exec("update foruminfo set state = 'collect' where title = '"+list1.get(id).getTitle()+"' ");
+		if(getActivity().getIntent().getExtras()!=null){
+			dbo.exec("update foruminfo set state =" +
+					"  '"+getActivity().getIntent().getExtras().getString("user")+"' " +
+					"where title = '"+list1.get(id).getTitle()+"' ");
+		}
+		else{
+			Toast.makeText(getActivity(),"登陆过后方可收藏", Toast.LENGTH_LONG).show();
+		}
 	}
 	private void restoreitem(int id) {
 		// TODO Auto-generated method stub

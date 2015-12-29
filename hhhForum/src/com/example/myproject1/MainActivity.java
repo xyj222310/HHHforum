@@ -1,7 +1,5 @@
  package com.example.myproject1;
 
-import com.example.classpro1.polo.Forum;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;

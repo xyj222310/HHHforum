@@ -84,15 +84,21 @@ public class SecondSonfrag extends Fragment {
 		ForuminfoOpration dbo = new ForuminfoOprationImpl(getActivity());
 		list1 = new ArrayList <Forum> ();
 		list1 = dbo.queryAll();
-		for(int i=0;i<list1.size();i++){
-			if("collect".equals(list1.get(i).getState())){
-				list2.add(new Forum(list1.get(i).getTitle(),
-						list1.get(i).getSender(),
-						list1.get(i).getDiscuessNum(),
-						list1.get(i).getSender(),
-						list1.get(i).getImageSrc(),
-						list1.get(i).getState()));
+		if(getActivity().getIntent().getExtras() != null){
+			for(int i=0;i<list1.size();i++){
+				if(getActivity().getIntent().getExtras().getString("user")
+						.equals(list1.get(i).getState())){
+					list2.add(new Forum(list1.get(i).getTitle(),
+							list1.get(i).getSender(),
+							list1.get(i).getDiscuessNum(),
+							list1.get(i).getSender(),
+							list1.get(i).getImageSrc(),
+							list1.get(i).getState()));
+				}
 			}
+		}
+		else{
+			Toast.makeText(getActivity(),"尚未登录，无法查看收藏夹", Toast.LENGTH_LONG).show();
 		}
 		adapter1 = new ForumAdapter(list2,getActivity());
 		listview1.setAdapter(adapter1);
@@ -118,7 +124,8 @@ public class SecondSonfrag extends Fragment {
 		// TODO Auto-generated method stub
 		list2.clear();
 		for(int i=0;i<list1.size();i++){
-			if("collect".equals(list1.get(i).getState())){
+			if(getActivity().getIntent().getExtras().getString("user")
+					.equals(list1.get(i).getState())){
 					list2.add(new Forum(list1.get(i).getTitle(),
 							list1.get(i).getSender(),
 							list1.get(i).getDiscuessNum(),
