@@ -48,12 +48,7 @@ public class TabbedActivity extends Activity implements ActionBar.TabListener {
 		setUpTabs();
 		Intent intent=getIntent();
 		bundle=intent.getExtras();
-		
-//		if(bundle!=null){
-//			username = bundle.getString("user");
-////			ThirdSonfrag tf = new ThirdSonfrag();
-////			tf.setArguments(bundle);
-//		}
+
 	}
     private void setUpTabs() {
     	final ActionBar actionBar = getActionBar();

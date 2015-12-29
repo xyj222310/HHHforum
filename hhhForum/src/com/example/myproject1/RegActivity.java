@@ -3,13 +3,14 @@ package com.example.myproject1;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ public class RegActivity extends Activity {
 	CheckBox check4;
 	CheckBox check5;
 	CheckBox check6;
+	Button buttonreg;
 	SpinnerAdapter adapter1;
 	List<Institution> list2;
 	EditText username;
@@ -37,6 +39,7 @@ public class RegActivity extends Activity {
 	RadioButton male;
 	RadioButton female;
 	RadioGroup group;
+	Spinner spinner2;
 	String checkedText ;
 	String sex ="";
 	@Override
@@ -50,32 +53,29 @@ public class RegActivity extends Activity {
 		 check4 = (CheckBox)findViewById(R.id.regcheck4);
 		 check5 = (CheckBox)findViewById(R.id.regcheck5);
 		 check6 = (CheckBox)findViewById(R.id.regcheck6);
+		initspinner();
+		initbuttonreg();
+		initcheckbox();
+		initradiogroup();
 		
-		Spinner spinner2 = (Spinner)findViewById(R.id.spinner2);
-		list2 = new ArrayList<Institution>();
-		list2.add(new Institution("重庆理工大学","计算机学院","物联网系"));
-		list2.add(new Institution("重庆理工大学","覅的肌肤学院","物联网系"));
-		list2.add(new Institution("重庆理工大学","方式地方还i学院","物联网系"));
-	
-		adapter1 = new SpinnerAdapter(list2,this);
-		spinner2.setAdapter(adapter1);
-		Button buttonreg = (Button)findViewById(R.id.confirmreg);
-		buttonreg.setOnClickListener(new View.OnClickListener(){	
-			@Override
-			public void onClick(View v) {
-				String username=((EditText)findViewById(R.id.usernamereg)).getText().toString().trim();
-				String password=((EditText)findViewById(R.id.passwordreg)).getText().toString().trim();
-				if("".equals(username) || "".equals(password) || "".equals(sex)){
-					new AlertDialog.Builder(RegActivity.this).setTitle("请补充以下内容").setMessage("用户名和密码haiyou性别，请完善").setPositiveButton("确定", null).show();
-					savetoDB();
-				}
-				TextView txv1 = (TextView)findViewById(R.id.feedback1);
-				TextView txv2 = (TextView)findViewById(R.id.feedback2);
-				txv1.setText(username);
-				txv2.setText(password);
-				savetoDB();
-			}
-		});
+	}
+	private void initradiogroup() {
+		// TODO Auto-generated method stub
+		group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			 public void onCheckedChanged(RadioGroup group, int checkedId) { 
+	                // TODO Auto-generated method stub 
+	                if(checkedId==female.getId()){ 
+	                	Toast.makeText(RegActivity.this, "女",Toast.LENGTH_LONG)
+						.show();
+	                     sex = "女";
+	                }else if(checkedId==male.getId()){ 
+	                	sex = "男";
+	                } 
+			 }
+	        }); 
+	}
+	private void initcheckbox() {
+		// TODO Auto-generated method stub
 		CheckBox.OnClickListener checkBoxListener = new CheckBox.OnClickListener(){
 			@Override
 			public void onClick(View view) {
@@ -102,18 +102,53 @@ public class RegActivity extends Activity {
 		group = (RadioGroup)findViewById(R.id.group);
 		male = (RadioButton)findViewById(R.id.male);
 		female = (RadioButton)findViewById(R.id.female);
-		group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			 public void onCheckedChanged(RadioGroup group, int checkedId) { 
-	                // TODO Auto-generated method stub 
-	                if(checkedId==female.getId()){ 
-	                	Toast.makeText(RegActivity.this, "女",Toast.LENGTH_LONG)
-						.show();
-	                     sex = "女";
-	                }else if(checkedId==male.getId()){ 
-	                	sex = "男";
-	                } 
-			 }
-	        }); 
+	}
+	private void initbuttonreg() {
+		// TODO Auto-generated method stub
+		buttonreg = (Button)findViewById(R.id.confirmreg);
+		buttonreg.setOnClickListener(new View.OnClickListener(){	
+			@Override
+			public void onClick(View v) {
+				String username=((EditText)findViewById(R.id.usernamereg)).getText().toString().trim();
+				String password=((EditText)findViewById(R.id.passwordreg)).getText().toString().trim();
+				if("".equals(username) || "".equals(password) || "".equals(sex)){
+					new AlertDialog.Builder(RegActivity.this).setTitle("请补充以下内容").setMessage("用户名和密码haiyou性别，请完善").setPositiveButton("确定", null).show();
+					savetoDB();
+				}
+				TextView txv1 = (TextView)findViewById(R.id.feedback1);
+				TextView txv2 = (TextView)findViewById(R.id.feedback2);
+				txv1.setText(username);
+				txv2.setText(password);
+				savetoDB();
+			}
+		});
+	}
+	private void initspinner() {
+		// TODO Auto-generated method stub
+		
+		spinner2 = (Spinner)findViewById(R.id.spinner2);
+		list2 = new ArrayList<Institution>();
+		list2.add(new Institution("重庆理工大学","计算机学院","物联网系"));
+		list2.add(new Institution("重庆理工大学","覅的肌肤学院","软工"));
+		list2.add(new Institution("重庆理工大学","方式地方还i学院","几科"));
+		adapter1 = new SpinnerAdapter(list2,this);
+		spinner2.setAdapter(adapter1);
+		spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				Toast.makeText(RegActivity.this, list2.get(arg2).getMajor().toString()
+						+"被选中",Toast.LENGTH_LONG)
+				.show();
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	public void savetoDB(){	
 		username = (EditText)findViewById(R.id.usernamereg);
