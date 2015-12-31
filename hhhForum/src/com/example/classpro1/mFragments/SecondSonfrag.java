@@ -11,8 +11,10 @@ import com.example.classpro1.util.impl.ForuminfoOprationImpl;
 import com.example.myproject1.InformActivity;
 import com.example.myproject1.R;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -29,18 +31,26 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 public class SecondSonfrag extends Fragment {
+	/*定义访问模式*/
+	/*定义一个SharedPreferences名。之后将以这个名字保存在Android文件系统中*/
+	
 	private List<Forum> list1;
 	private List<Forum> list2;
 	private ForumAdapter adapter1;
 	private ForuminfoOpration dbo;
 	private ListView listview1;
 	final static int MENU_00=Menu.FIRST;
+	private static final String PREFERENCE_NAME = "SaveSetting";
+	int MODE = Activity.MODE_PRIVATE;  
+	String name;
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
+		getActivity();
 		list2 = new ArrayList<Forum>();
-		initview();		
+		   /*获取SharedPreferences实例。如果不存在将新建一个  */
+				initview();		
 		ItemOnLongClick();
 	}
 	@Override
@@ -84,21 +94,26 @@ public class SecondSonfrag extends Fragment {
 		ForuminfoOpration dbo = new ForuminfoOprationImpl(getActivity());
 		list1 = new ArrayList <Forum> ();
 		list1 = dbo.queryAll();
-		if(getActivity().getIntent().getExtras() != null){
-			for(int i=0;i<list1.size();i++){
-				if(getActivity().getIntent().getExtras().getString("user")
-						.equals(list1.get(i).getState())){
-					list2.add(new Forum(list1.get(i).getTitle(),
-							list1.get(i).getSender(),
-							list1.get(i).getDiscuessNum(),
-							list1.get(i).getSender(),
-							list1.get(i).getImageSrc(),
-							list1.get(i).getState()));
-				}
+		SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFERENCE_NAME, MODE);
+		 name = sharedPreferences.getString("username","");
+		if(getActivity().getIntent().getExtras() == null){
+//				||!("".equals(name))){
+			if("".equals(name)){
+				Toast.makeText(getActivity(),"尚未登录，无法查看收藏夹", Toast.LENGTH_LONG).show();
 			}
 		}
 		else{
-			Toast.makeText(getActivity(),"尚未登录，无法查看收藏夹", Toast.LENGTH_LONG).show();
+			name = getActivity().getIntent().getExtras().getString("user");
+		}
+		for(int i=0;i<list1.size();i++){
+			if(name.equals(list1.get(i).getState())){
+				list2.add(new Forum(list1.get(i).getTitle(),
+					list1.get(i).getSender(),
+					list1.get(i).getDiscuessNum(),
+					list1.get(i).getSender(),
+					list1.get(i).getImageSrc(),
+					list1.get(i).getState()));
+			}
 		}
 		adapter1 = new ForumAdapter(list2,getActivity());
 		listview1.setAdapter(adapter1);

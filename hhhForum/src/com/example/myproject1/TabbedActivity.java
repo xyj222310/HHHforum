@@ -115,7 +115,6 @@ public class TabbedActivity extends Activity implements ActionBar.TabListener {
 //				.getView().findViewById(R.id.username);
 //				tv.setText(username);	
 //			}
-
 	}
 
 	@Override

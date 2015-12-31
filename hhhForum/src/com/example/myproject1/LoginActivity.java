@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -22,9 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.classpro1.adapter.PersonalDBAdapter;
-import com.example.classpro1.polo.Forum;
 import com.example.classpro1.polo.PersonalInfo;
-import com.example.myproject1.R;
 
 @SuppressLint("NewApi")
 public class LoginActivity extends Activity {

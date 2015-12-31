@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.classpro1.polo.Forum;
 
 public interface ForuminfoOpration {
-	public void InsertIntoforuminfo();
+	public void InsertIntoforuminfo(String title,String user,String time);
 	public void deleteAll();
 	public List<Forum> queryAll() ;
 	public void updatefruminfo(Forum forum,int pos);
